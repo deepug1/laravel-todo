@@ -9,17 +9,31 @@
     <div id="root">
         <main class="container">
             <h1 class="title">Awesome Todos</h1>
-            <form class="form"><input type="text" placeholder="Enter a new todo..." class="form__input" required=""
-                    value=""><button class="form__button" type="submit">Create Todo</button></form>
+            <form class="form" action="{{route('create')}}" method="post">
+                @csrf
+                <input type="text" placeholder="Enter a new todo..." class="form__input" required="" value=""
+                    name="title">
+                <button class=" form__button" type="submit">Create Todo</button>
+            </form>
+
+            @foreach($todos as $key => $todo)
             <div class="todos">
                 <div class="todo">
-                    <p>dfdfbf</p>
+                    <p>{{$key + 1}} . {{$todo->title}}</p>
                     <div class="mutations">
-                        <button class="todo__status">☐</button>
-                        <button class="todo__delete">🗑️</button>
+                        <button class="todo__status">
+                            @if($todo->completed == 0)
+                            <a href="{{route('complete', [$todo->id])}}">❌</a>
+                            @else
+                            <a href="{{route('incomplete', [$todo->id])}}">✅</a>
+                            @endif
+                        </button>
+                        <a href="{{route('delete', [$todo->id])}}"> <button class="todo__delete">🗑️</button></a>
                     </div>
                 </div>
             </div>
+
+            @endforeach
         </main>
     </div>
 </body>

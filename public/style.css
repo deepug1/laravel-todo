@@ -28,7 +28,7 @@ button,
 input,
 select,
 textarea {
-    font: inherit
+    font: inherit;
 }
 
 h1,
@@ -63,7 +63,8 @@ body {
     align-items: center;
     display: flex;
     flex-direction: column;
-    gap: 1rem
+    gap: 1rem;
+    margin : 20px 0;
 }
 
 .todo {
@@ -79,6 +80,10 @@ body {
     &:hover {
         background-color: hsla(0, 0%, 100%, .2)
     }
+    
+}
+a {
+    text-decoration: none !important;
 }
 
 .mutations {
